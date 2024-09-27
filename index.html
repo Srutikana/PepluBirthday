@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Layout</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f8ff; /* Light blue background */
+            font-family: Arial, sans-serif;
+            overflow: hidden; /* Hide scrollbars */
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+        }
+
+        .row {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px; /* Space between rows */
+        }
+
+        .row img {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            margin: 10px;
+            border-radius: 8px; /* Rounded corners */
+            transition: transform 0.3s ease; /* Animation for hover effect */
+        }
+
+        .row img:hover {
+            transform: scale(1.1); /* Slight zoom-in effect on hover */
+        }
+
+        button {
+            padding: 15px 30px;
+            font-size: 18px;
+            color: #fff;
+            background-color: #FF6347; /* Light Coral */
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Light shadow */
+            transition: background-color 0.3s ease;
+            margin: 20px 0; /* Space around button */
+        }
+
+        button:hover {
+            background-color: #FF4500; /* Bright Orange on hover */
+        }
+
+        .heart {
+            width: 20px;
+            height: 20px;
+            position: absolute;
+            background: red; /* Heart color */
+            transform: rotate(-45deg);
+            animation: fall linear forwards; /* Falling animation */
+            opacity: 0.8;
+        }
+
+        .heart:before,
+        .heart:after {
+            content: "";
+            width: 20px;
+            height: 20px;
+            position: absolute;
+            border-radius: 50%;
+            background: red; /* Heart color */
+        }
+
+        .heart:before {
+            top: -10px;
+            left: 0;
+        }
+
+        .heart:after {
+            left: 10px;
+            top: 0;
+        }
+
+        @keyframes fall {
+            0% {
+                transform: translateY(0) rotate(-45deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) rotate(-45deg); /* Fall to the bottom */
+                opacity: 0; /* Fade out as it falls */
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- First row of images -->
+        <div class="row">
+            <img src="pepu.jpg" alt="Image 1">
+            <img src="peplu 2.jpg" alt="Image 2">
+            <img src="peplu 3.jpg" alt="Image 3">
+        </div>
+
+        <!-- Happy Birthday button -->
+        <button onclick="showHearts()">Happy Birthday</button>
+
+        <!-- Second row of images -->
+        <div class="row">
+            <img src="peplu 4.jpg" alt="Image 4">
+            <img src="peplu 5.jpg" alt="Image 5">
+            <img src="peplu 6.jpg" alt="Image 6">
+        </div>
+    </div>
+
+    <script>
+        function showHearts() {
+            for (let i = 0; i < 100; i++) { // Create 100 hearts
+                createHeart();
+            }
+        }
+
+        function createHeart() {
+            const heart = document.createElement("div");
+            heart.classList.add("heart");
+
+            // Randomize size and position
+            heart.style.left = Math.random() * window.innerWidth + "px"; // Random horizontal position
+            heart.style.top = -20 + "px"; // Start position just above the viewport
+            heart.style.animationDuration = Math.random() * 2 + 3 + "s"; // Random duration between 3s and 5s
+            heart.style.animationDelay = Math.random() * 2 + "s"; // Random delay
+
+            document.body.appendChild(heart);
+
+            // Remove the heart after animation ends
+            setTimeout(() => {
+                heart.remove();
+            }, 5000); // Heart will disappear after 5 seconds
+        }
+    </script>
+</body>
+</html>
